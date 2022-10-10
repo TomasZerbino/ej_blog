@@ -5,10 +5,12 @@ const articleController = require("../controllers/articleController");
 const commentController = require("../controllers/commentController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const { Article, User } = require("../models");
+const userRole = require("../middlewares/userRole");
 // Rutas del Admin:
 // ...
 adminRouter.use(ensureAuthenticated);
-adminRouter.get("/", pagesControllers.showAdmin);
+
+adminRouter.get("/", userRole(30), pagesControllers.showAdmin);
 
 adminRouter.get("/edit/:id", articleController.editArticle);
 

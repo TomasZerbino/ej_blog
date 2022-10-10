@@ -1,7 +1,7 @@
 const passport = require("passport");
 const session = require("express-session");
 const LocalStrategy = require("passport-local");
-const { User } = require("../models/index");
+const { User, Role } = require("../models/index");
 const bcrypt = require("bcryptjs");
 
 module.exports = (app) => {
@@ -44,7 +44,7 @@ module.exports = (app) => {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findByPk(id)
+    User.findByPk(id, { include: Role })
       .then((user) => {
         done(null, user); // req.user
       })

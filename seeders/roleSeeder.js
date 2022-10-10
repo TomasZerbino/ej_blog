@@ -1,25 +1,15 @@
-const { faker } = require("@faker-js/faker");
 const { Role } = require("../models");
 
-faker.locale = "es";
-
 module.exports = async () => {
-  const roles = [];
+  const rols = [];
 
-  for (let i = 0; i < 4; i++) {
-    const arrayOfTypes = ["reader", "writer", "editor", "admin"];
-    const arrayOfCodes = [10, 20, 30, 40];
+  rols.push(
+    { name: "reader", code: 10 },
+    { name: "writer", code: 20 },
+    { name: "editor", code: 30 },
+    { name: "admin", code: 40 },
+  );
 
-    roles.push({
-      type: arrayOfTypes[i],
-      code: arrayOfCodes[i],
-    });
-    // roles.push({
-    //   types: "writer",
-    //   code: 20,
-    // });
-  }
-
-  await Role.bulkCreate(roles);
-  console.log("[Database] Se corrió el seeder de Roles.");
+  await Role.bulkCreate(rols);
+  console.log("[Database] Se corrió el seeder de Rols.");
 };

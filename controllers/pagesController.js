@@ -1,10 +1,11 @@
 const { Article, User } = require("../models");
 const { format } = require("date-fns");
 const spanishLocale = require("date-fns/locale/es");
-
 const { application } = require("express");
+
 async function showHome(req, res) {
   const allArticles = await Article.findAll({ include: User });
+
   res.render("home", { allArticles, req });
 }
 

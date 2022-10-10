@@ -20,6 +20,7 @@ const Comment = require("./Comment")(sequelize, Model, DataTypes);
 // Luego de definir los modelos, se pueden establecer relaciones
 // entre los mismos...
 User.belongsTo(Role);
+Role.hasMany(User);
 
 Article.belongsTo(User);
 User.hasMany(Article);
@@ -37,4 +38,3 @@ module.exports = {
   Comment,
   Article,
 };
-
