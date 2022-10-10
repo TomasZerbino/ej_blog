@@ -47,17 +47,16 @@
             <td><%= format(new Date(article.createdAt),"Pp",{locale: spanishLocale,}) %></td>
             <td><%= article.user.firstname%> <%=article.user.lastname %></td>
 
-            <% if(user.id === article.user.id){%>
+            
             <td>
+              <% if(user.id === article.user.id || user.role.code >= 30){%>
               <a href="/admin/edit/<%=article.id%>" class="btn btn-primary">Editar</a>
+              <% } %>
+              <% if(user.id === article.user.id || user.role.code >= 40){%>
               <a href="/admin/destroy/<%=article.id%>" class="btn btn-danger">Eliminar</a>
+              <% } %>
             </td>
-            <% } %> <% if(user.id !== article.user.id) { %>
-            <td>
-              <button class="btn btn-secondary">Editar</button>
-              <button class="btn btn-secondary">Eliminar</button>
-            </td>
-            <% } %>
+             
           </tr>
 
           <%}%>

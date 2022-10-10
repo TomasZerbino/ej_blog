@@ -35,7 +35,6 @@ module.exports = (app) => {
       }
 
       return done(null, user);
-      //-------------------------
     }),
   );
 

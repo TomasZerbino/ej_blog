@@ -5,12 +5,12 @@ const articleController = require("../controllers/articleController");
 const commentController = require("../controllers/commentController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 const { Article, User } = require("../models");
-const userRole = require("../middlewares/userRole");
+const atLeastWriter = require("../middlewares/atLeastWriter");
 // Rutas del Admin:
 // ...
 adminRouter.use(ensureAuthenticated);
 
-adminRouter.get("/", userRole(30), pagesControllers.showAdmin);
+adminRouter.get("/", atLeastWriter, pagesControllers.showAdmin);
 
 adminRouter.get("/edit/:id", articleController.editArticle);
 
@@ -22,6 +22,6 @@ adminRouter.post("/articles/:id", commentController.create);
 
 adminRouter.post("/edit/:id", articleController.edit);
 
-adminRouter.get("/articles/crear", articleController.createArticle);
+adminRouter.get("/articles/crear", atLeastWriter, articleController.createArticle);
 
 module.exports = adminRouter;

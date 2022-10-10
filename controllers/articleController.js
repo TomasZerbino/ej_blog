@@ -84,20 +84,25 @@ async function editArticle(req, res) {
   const userId = req.user.dataValues.id;
   const article = await Article.findByPk(req.params.id, { include: "user" });
 
-  console.log(article.user.id);
-  if (userId !== article.user.id) {
-    return res.redirect("/admin");
+  if (userId === article.user.id || req.user.role.code >= 30) {
+    res.render("editArticle", {
+      article,
+    });
+  } else {
+    res.redirect("/admin");
   }
-
-  res.render("editArticle", {
-    article,
-  });
 }
 // Remove the specified resource from storage.
 async function destroy(req, res) {
-  await Article.destroy({
-    where: { id: req.params.id },
-  });
+  const userId = req.user.dataValues.id;
+  const article = await Article.findByPk(req.params.id, { include: "user" });
+
+  if (userId === article.user.id || req.user.role.code >= 40) {
+    await Article.destroy({
+      where: { id: req.params.id },
+    });
+  }
+
   res.redirect("/admin");
 }
 
