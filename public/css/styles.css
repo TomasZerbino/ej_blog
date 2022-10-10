@@ -60,3 +60,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.userCard{
+  width: 70%;
+  margin: auto;
+}

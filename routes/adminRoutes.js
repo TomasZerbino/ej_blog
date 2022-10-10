@@ -24,4 +24,7 @@ adminRouter.post("/edit/:id", articleController.edit);
 
 adminRouter.get("/articles/crear", atLeastWriter, articleController.createArticle);
 
+adminRouter.get("/user/profile", pagesControllers.showProfile);
+
+adminRouter.post("/user/destroy/:id");
 module.exports = adminRouter;

@@ -28,6 +28,12 @@ async function showAdmin(req, res) {
   res.render("admin", { allArticles, req, format, spanishLocale });
 }
 
+async function showProfile(req, res) {
+  const users = await User.findAll();
+
+  res.render("userManager", { users, req });
+}
+
 // Otros handlers...
 // ...
 
@@ -37,4 +43,5 @@ module.exports = {
   showContact,
   showAboutUs,
   showAdmin,
+  showProfile,
 };

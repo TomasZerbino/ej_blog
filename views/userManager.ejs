@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+    crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>User</title>
+</head>
+<body>
+    <%- include('partials/navbar'); %>
+
+    <section class="container mt-5">
+    <h1 class="text-center">User</h1>
+
+    <div class="card userCard">
+        <div class="card-header text-center">
+          <%= user.firstname %> <%= user.lastname %> 
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Profile information</h5>
+            <ul>
+                <li>
+                    <h3 class="fs-5">ID</h3> 
+                    <p><%= user.id %> </p>
+                </li>
+                <li>
+                    <h3 class="fs-5">FIRST:</h3>
+                    <p><%= user.firstname %></p>  
+                </li>
+                <li>
+                    <h3 class="fs-5">LAST:</h3>
+                    <p><%= user.lastname %></p>
+                </li>
+                <li>
+                    <h3 class="fs-5">EMAIL:</h3>
+                    <p><%= user.email %></p>
+                </li>
+            </ul>
+            <a href="/admin/user/destroy/<%= user.id %>">Delete user</a>
+        </div>
+    </div>
+    </section>
+
+    <% if(req.user.role.code >= 40){ %> 
+    <section class="container d-flex justify-content-around flex-wrap mt-5">
+
+        <% for(user of users){ %> 
+
+            <div class="card text-bg-light mb-4" style="width: 18rem;">
+                <div class="card-header d-flex justify-content-between"><%= user.firstname %> <%= user.lastname %> <a href="/admin/user/destroy/<%= user.id %>">Delete user</a></div>
+                <div class="card-body">
+                    <h5 class="card-title">Profile information</h5>
+                    <ul>
+                        <li>
+                            <h4 class="fs-6">ID</h4> 
+                            <p><%= user.id %> </p>
+                        </li>
+                        <li>
+                            <h4 class="fs-6">FIRST:</h4>
+                            <p><%= user.firstname %></p>  
+                        </li>
+                        <li>
+                            <h4 class="fs-6">LAST:</h4>
+                            <p><%= user.lastname %></p>
+                        </li>
+                        <li>
+                            <h4 class="fs-6">EMAIL:</h4>
+                            <p><%= user.email %></p>
+                        </li>
+                    </ul>
+                </div>
+              </div>
+
+        <% } %>    
+
+    </section>
+    <% } %> 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>
