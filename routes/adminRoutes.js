@@ -4,7 +4,6 @@ const pagesControllers = require("../controllers/pagesController");
 const articleController = require("../controllers/articleController");
 const commentController = require("../controllers/commentController");
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
-const { Article, User } = require("../models");
 const atLeastWriter = require("../middlewares/atLeastWriter");
 // Rutas del Admin:
 // ...
@@ -27,4 +26,5 @@ adminRouter.get("/articles/crear", atLeastWriter, articleController.createArticl
 adminRouter.get("/user/profile", pagesControllers.showProfile);
 
 adminRouter.post("/user/destroy/:id");
+
 module.exports = adminRouter;

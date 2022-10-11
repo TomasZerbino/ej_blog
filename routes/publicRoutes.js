@@ -5,7 +5,6 @@ const pagesController = require("../controllers/pagesController");
 const userController = require("../controllers/userController");
 const passport = require("passport");
 const loggedUserRedirect = require("../middlewares/loggedUserRedirect");
-const { Article, User } = require("../models");
 
 // Rutas Públicas:
 publicRouter.get("/", pagesController.showHome);

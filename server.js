@@ -14,10 +14,11 @@ passport(app);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
   session({
-    secret: process.env.SESION_SECREY,
+    secret: process.env.SESION_SECRET,
     resave: false,
     saveUninitialized: false,
   }),
